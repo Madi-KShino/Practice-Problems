@@ -50,3 +50,52 @@ func sumOfIntegerArray(_ arrayOfInts: [Int]) -> Any {
 }
 
 print(sumOfIntegerArray([1,2,3,4,5]))
+
+/*:
+# TRIPLETS
+Functions which take in triplets and return some logic
+*/
+//Take in two triplets (a and b) with Integers and compare the integern values for both triplets.
+//If a[i] > b[i], then a recieves 1 point
+//If b[i] > a[i], then b recieves 1 point
+//If a[i] == b[i], then neither recieve the point
+//Constraints: i must be between 1-100
+//Return an array of Integers for the points for a and b [scoreA, scoreB]
+func scoreOfTwoTriplets(a: (Int, Int, Int), b: (Int, Int, Int)) -> [Int] {
+    var scoreA = 0
+    var scoreB = 0
+    if a.0 > b.0 {
+        scoreA += 1
+    } else if a.0 < b.0 {
+        scoreB += 1
+    }
+    if a.1 > b.1 {
+         scoreA += 1
+    } else if a.1 < b.1 {
+         scoreB += 1
+     }
+    if a.2 > b.2 {
+         scoreA += 1
+    } else if a.2 < b.2 {
+         scoreB += 1
+     }
+    let scoreArray = [scoreA, scoreB]
+    return scoreArray
+}
+
+func getScore(a: (Int, Int, Int), b: (Int, Int, Int)) -> String {
+    let score = scoreOfTwoTriplets(a: a, b: b)
+    var message = "A: \(a.0), \(a.1), \(a.2)\n    B: \(b.0), \(b.1), \(b.2)\n"
+    message += "    The Score is \(score[0]):\(score[1])."
+    if score[0] > score[1] {
+        message += " A Wins!"
+    } else {
+        message += " B Wins!"
+    }
+    return message
+}
+
+let a = (1,3,5)
+let b = (3,3,6)
+
+print("T1:", getScore(a: a, b: b))

@@ -53,14 +53,13 @@ print(sumOfIntegerArray([1,2,3,4,5]))
 
 /*:
 # TRIPLETS
-Functions which take in triplets and return some logic
-*/
-//Take in two triplets (a and b) with Integers and compare the integern values for both triplets.
-//If a[i] > b[i], then a recieves 1 point
-//If b[i] > a[i], then b recieves 1 point
-//If a[i] == b[i], then neither recieve the point
-//Constraints: i must be between 1-100
-//Return an array of Integers for the points for a and b [scoreA, scoreB]
+Take in two triplets (a and b) with Integers and compare the integer values for both triplets.
+Return an array of Integers for the points for a and b [scoreA, scoreB]
+* If a[i] > b[i], then a recieves 1 point,
+* If b[i] > a[i], then b recieves 1 point,
+* If a[i] == b[i], then neither recieve the point.
+* Constraints: i must be between 1-100
+ */
 func scoreOfTwoTriplets(a: (Int, Int, Int), b: (Int, Int, Int)) -> [Int] {
     var scoreA = 0
     var scoreB = 0
@@ -99,3 +98,35 @@ let a = (1,3,5)
 let b = (3,3,6)
 
 print("T1:", getScore(a: a, b: b))
+
+/*:
+ # SQUARE MATRIX
+ Function must take in an array of 3 arrays, each with 3 Integers. When those nintegers are arranged in a square matrix, the function must return the absolute difference of the diagonal sums.
+ Example: Array = [1, 2, 3, 4, 5, 6 7, 8, 9]
+* 1 2 3
+* 4 5 6
+* 9 8 9
+
+ 1 + 5 + 9 =  15   &&   9 + 5 + 3  17
+ 
+ | 15 - 17 |  = 2
+*/
+func diagonalDifference(array: [[Int]]) -> Int {
+    let rows = array.count
+    let sumOne = array[0][0] + array[1][1] + array[2][2]
+    let sumTwo = array[2][0] + array[1][1] + array[0][2]
+    let difference = sumOne - sumTwo
+    if difference < 0 {
+        return -difference
+    } else {
+        return difference
+    }
+}
+
+func printMatrix(array: [[Int]]) -> String {
+    let matrix = "\n    \(array[0][0]) \(array[0][1]) \(array[0][2])\n    \(array[1][0]) \(array[1][1]) \(array[1][2])\n    \(array[2][0]) \(array[2][1]) \(array[2][2])"
+    return matrix
+}
+
+let array = [[1,12,-3],[4,-5,6],[4,8,19]]
+print("M1: For the Matrix :", printMatrix(array: array), "\n    The Absolute Value of the Diagonal Difference =", diagonalDifference(array: array))

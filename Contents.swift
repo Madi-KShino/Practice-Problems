@@ -85,7 +85,7 @@ func scoreOfTwoTriplets(a: (Int, Int, Int), b: (Int, Int, Int)) -> [Int] {
 func getScore(a: (Int, Int, Int), b: (Int, Int, Int)) -> String {
     let score = scoreOfTwoTriplets(a: a, b: b)
     var message = "A: \(a.0), \(a.1), \(a.2)\n    B: \(b.0), \(b.1), \(b.2)\n"
-    message += "    The Score is \(score[0]):\(score[1])."
+    message += "    The Score is \(score[0]):\(score[1])"
     if score[0] > score[1] {
         message += " A Wins!"
     } else {
@@ -101,7 +101,7 @@ print("T1:", getScore(a: a, b: b))
 
 /*:
  # SQUARE MATRIX
- Function must take in an array of 3 arrays, each with 3 Integers. When those nintegers are arranged in a square matrix, the function must return the absolute difference of the diagonal sums.
+ Function must take in an array of arrays, which make up a square matrix. When those nintegers are arranged in the square matrix, the function must return the absolute difference of the diagonal sums.
  Example: Array = [1, 2, 3, 4, 5, 6 7, 8, 9]
 * 1 2 3
 * 4 5 6
@@ -113,20 +113,29 @@ print("T1:", getScore(a: a, b: b))
 */
 func diagonalDifference(array: [[Int]]) -> Int {
     let rows = array.count
-    let sumOne = array[0][0] + array[1][1] + array[2][2]
-    let sumTwo = array[2][0] + array[1][1] + array[0][2]
-    let difference = sumOne - sumTwo
-    if difference < 0 {
-        return -difference
-    } else {
-        return difference
+    var sumOne = Int()
+    var sumTwo = Int()
+    for index in 0..<rows {
+        if array[index].count == rows {
+            sumOne += array[index][index]
+            sumTwo += array[rows - index - 1][index]
+        } else { return 0 }
     }
+    let difference = abs(sumOne - sumTwo)
+    return difference
 }
 
 func printMatrix(array: [[Int]]) -> String {
-    let matrix = "\n    \(array[0][0]) \(array[0][1]) \(array[0][2])\n    \(array[1][0]) \(array[1][1]) \(array[1][2])\n    \(array[2][0]) \(array[2][1]) \(array[2][2])"
+    let rows = array.count
+    var matrix = ""
+    for index in 0..<rows {
+        if array[index].count == rows {
+            var row = array[index]
+            matrix += "\n    \(row)"
+        } else { return "\n    Incorrect input. Each array.count must equal the total amount of arrays." }
+    }
     return matrix
 }
 
-let array = [[1,12,-3],[4,-5,6],[4,8,19]]
+let array = [[1,-12,3, 3],[4,5,6, 4],[4,8,-19, 1], [2, 4, 5, 1]]
 print("M1: For the Matrix :", printMatrix(array: array), "\n    The Absolute Value of the Diagonal Difference =", diagonalDifference(array: array))

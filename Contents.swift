@@ -38,9 +38,8 @@ print("F3: The Factorial of 6 is \(thirdFactorial(6))")
 
 /*:
 # ARRAYS
-Functions which take in an array and execute some logic
+Function that returns the sum of Integers in an array
 */
-//Take in an array of integers and return the sum of those integers
 func sumOfIntegerArray(_ arrayOfInts: [Int]) -> Any {
     var sum = Int()
     for int in arrayOfInts {
@@ -51,6 +50,28 @@ func sumOfIntegerArray(_ arrayOfInts: [Int]) -> Any {
 
 print(sumOfIntegerArray([1,2,3,4,5]))
 
+/*:
+Function that returns how many matching number pairs exist in an array of Integers
+* Array: [Int] = 10, 10, 20, 10, 30, 20, 10, 40, 50]
+* The total pairs = 3  (10, 10, & 20)
+*/
+func pairsInArray(_ array: [Int]) -> Int {
+    var pairs = Int()
+    let dictionaryOfPairs = array.reduce(into: [:]) { (pairCount, int) in
+        pairCount[int, default: 0] += 1
+    }
+    for item in dictionaryOfPairs {
+        if item.value > 1 && item.value % 2 == 0 {
+            pairs += item.value / 2
+        } else if item.value > 1 && item.value % 2 != 0 {
+            pairs += (item.value - 1) / 2
+        }
+    }
+    return pairs
+}
+
+let pairsArray = [1, 2, 3, 1, 2, 1, 1, 1]
+print("A2: The number of matching pairs in the array: \(pairsArray) = \(pairsInArray(pairsArray))")
 /*:
 # TRIPLETS
 Take in two triplets (a and b) with Integers and compare the integer values for both triplets.
@@ -130,7 +151,7 @@ func printMatrix(array: [[Int]]) -> String {
     var matrix = ""
     for index in 0..<rows {
         if array[index].count == rows {
-            var row = array[index]
+            let row = array[index]
             matrix += "\n    \(row)"
         } else { return "\n    Incorrect input. Each array.count must equal the total amount of arrays." }
     }

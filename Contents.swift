@@ -72,6 +72,7 @@ func pairsInArray(_ array: [Int]) -> Int {
 
 let pairsArray = [1, 2, 3, 1, 2, 1, 1, 1]
 print("A2: The number of matching pairs in the array: \(pairsArray) = \(pairsInArray(pairsArray))")
+
 /*:
 # TRIPLETS
 Take in two triplets (a and b) with Integers and compare the integer values for both triplets.
@@ -123,7 +124,7 @@ print("T1:", getScore(a: a, b: b))
 /*:
  # SQUARE MATRIX
  Function must take in an array of arrays, which make up a square matrix. When those nintegers are arranged in the square matrix, the function must return the absolute difference of the diagonal sums.
- Example: Array = [1, 2, 3, 4, 5, 6 7, 8, 9]
+* Example:  Array = [1, 2, 3, 4, 5, 6 7, 8, 9]
 * 1 2 3
 * 4 5 6
 * 9 8 9
@@ -160,3 +161,30 @@ func printMatrix(array: [[Int]]) -> String {
 
 let array = [[1,-12,3, 3],[4,5,6, 4],[4,8,-19, 1], [2, 4, 5, 1]]
 print("M1: For the Matrix :", printMatrix(array: array), "\n    The Absolute Value of the Diagonal Difference =", diagonalDifference(array: array))
+
+/*:
+ # STRINGS
+ A function which takes in a number of steps taken on a hike (n), and a string with D's (down) and U's (up) details about the hike. Each D/U represents 1 step up or down. A valley or mountain starts at sea level, an must go up/down equal units to finish at sea level, Return an Integer which represents the number of valleys walked through
+* Example:
+ n = 8 ,  s = UDDDUDUU,  return  1 Valley hiked through
+*/
+func countingValleys(n: Int, s: String) -> String {
+    var up: Int = 0
+    var down: Int = 0
+    if n == s.count {
+        for character in s {
+            if character == "U" {
+                up += 1
+            } else if character == "D" {
+                down += 1
+            } else {
+                return "Invalid String Input"
+            }
+        }
+    }
+    return "\(up)\(down)"
+}
+
+let stepsTaken = 8
+let altitudeChange = "UDDDUDUU"
+print("S1: If you Aaron takes \(stepsTaken) steps, and the altitude change was \(altitudeChange), then he hiked through \(countingValleys(n: stepsTaken, s: altitudeChange)) valleys.")

@@ -168,23 +168,27 @@ print("M1: For the Matrix :", printMatrix(array: array), "\n    The Absolute Val
 * Example:
  n = 8 ,  s = UDDDUDUU,  return  1 Valley hiked through
 */
-func countingValleys(n: Int, s: String) -> String {
-    var up: Int = 0
-    var down: Int = 0
-    if n == s.count {
-        for character in s {
-            if character == "U" {
-                up += 1
-            } else if character == "D" {
-                down += 1
-            } else {
-                return "Invalid String Input"
+func countingValleys(steps: Int, elevationChange: String) -> String {
+    var elevation = 0
+    var valleysHikedThrough = 0
+    var atSeaLevel = true
+    if steps == elevationChange.count {
+        for step in elevationChange {
+            elevation += step == "U" ? 1 : -1
+            if elevation < 0 && atSeaLevel {
+                valleysHikedThrough += 1
+                atSeaLevel = false
+            }
+            if elevation == 0 {
+                atSeaLevel = true
             }
         }
+        return "\(valleysHikedThrough)"
+    } else {
+        return "Invalid Input"
     }
-    return "\(up)\(down)"
 }
 
 let stepsTaken = 8
 let altitudeChange = "UDDDUDUU"
-print("S1: If you Aaron takes \(stepsTaken) steps, and the altitude change was \(altitudeChange), then he hiked through \(countingValleys(n: stepsTaken, s: altitudeChange)) valleys.")
+print("S1: If you Aaron takes \(stepsTaken) steps, and the altitude change was \(altitudeChange), then he hiked through \(countingValleys(steps: stepsTaken, elevationChange: altitudeChange)) valley(s).")

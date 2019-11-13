@@ -105,6 +105,31 @@ let plusMinusArray = [1,3,-4,0,2,-1,0,0,0,-1]
 print(plusMinus(arr: plusMinusArray))
 
 /*:
+Function which returns true or false if an array of Integers contains three consecutive numbers in a row
+* Example One:  [1, 2, 4, 7, 2, 8] = false
+* Example Two: [2, 3, 5, 6, 7, 9] = true
+*/
+func tripleThreat(array: [Int]) -> Bool {
+    var counter = 0
+    var last = array.first ?? 0
+    var next = 0
+    for int in array {
+        next = int
+        if next == (last + 1) {
+            counter += 1
+            if counter == 2 { return true }
+        } else {
+            counter = 0
+        }
+        last = int
+    }
+    return false
+}
+
+let ints = [1, 2, 4, 2, 3, 4]
+print("A4: The array \(ints) contains three consecutive numbers in a row: ", tripleThreat(array: ints))
+
+/*:
 # TRIPLETS
 Take in two triplets (a and b) with Integers and compare the integer values for both triplets.
 Return an array of Integers for the points for a and b [scoreA, scoreB]

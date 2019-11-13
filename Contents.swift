@@ -74,6 +74,37 @@ let pairsArray = [1, 2, 3, 1, 2, 1, 1, 1]
 print("A2: The number of matching pairs in the array: \(pairsArray) = \(pairsInArray(pairsArray))")
 
 /*:
+Function takes in an array and prints precise decimals describing the percentage/fraction of positive, negative, and 0 values.
+* Array: [Int] = [1,1,0,-1,-1]
+* +) 0.400000
+* - ) 0.400000
+* 0) 0.200000
+*/
+func plusMinus(arr: [Int]) -> String {
+    var printStatement = "A3: The fractions of +/-/0 values in the array \(arr) = \n"
+    let totalInts = arr.count
+    var positive = 0
+    var negative = 0
+    var zero = 0
+    for int in arr {
+        if int > 0 {
+            positive += 1
+        } else if int < 0 {
+            negative += 1
+        } else {
+            zero += 1
+        }
+    }
+    printStatement += String(format: "    +) %.6f \n", (Float(positive) / Float(totalInts)))
+    printStatement += String(format: "    -) %.6f \n", (Float(negative) / Float(totalInts)))
+    printStatement += String(format: "    0) %.6f", (Float(zero) / Float(totalInts)))
+    return printStatement
+}
+
+let plusMinusArray = [1,3,-4,0,2,-1,0,0,0,-1]
+print(plusMinus(arr: plusMinusArray))
+
+/*:
 # TRIPLETS
 Take in two triplets (a and b) with Integers and compare the integer values for both triplets.
 Return an array of Integers for the points for a and b [scoreA, scoreB]

@@ -248,3 +248,29 @@ func countingValleys(steps: Int, elevationChange: String) -> String {
 let stepsTaken = 8
 let altitudeChange = "UDDDUDUU"
 print("S1: If you Aaron takes \(stepsTaken) steps, and the altitude change was \(altitudeChange), then he hiked through \(countingValleys(steps: stepsTaken, elevationChange: altitudeChange)) valley(s).")
+
+/*:
+ A function which takes in a number (n) and prints a string which makes up a staircase using # and spaces. The staircase must be n spaces tall and wide and go up left to right.
+* If  n = 4
+ 
+S
+ 
+SS
+ 
+SSS
+
+SSSS
+*/
+
+func staircase(n: Int) {
+    let space = " "
+    let stair = "#"
+    print("S2: A staircase \(stepsTall) steps tall:")
+    for i in 1...n {
+        var string = "    " + String(repeating: space, count: n-i) + String(repeating: stair, count: i)
+        print(string)
+    }
+}
+
+let stepsTall = 4
+staircase(n: stepsTall)
